@@ -7,7 +7,7 @@ import shutil
 import math
 import imutils
 
-SEED_DATA_DIR = "C:/Base-de-Dados/BrainTumor"
+SEED_DATA_DIR = "/home/rtx4060ti2/Documentos/BrainTumor"
 num_of_images = {}
 
 # Percorrer pasta de imagens/Criar pasta treino
@@ -19,9 +19,9 @@ print(num_of_images)
 
 # 70% treino, 15% validação e 15% teste
 
-TRAIN_DIR = "C:/Base-de-Dados/BrainTumor/train"
-VALIDATE_DIR = "C:/Base-de-Dados/BrainTumor/validade"
-TEST_DIR = "C:/Base-de-Dados/BrainTumor/test"
+TRAIN_DIR = "/home/rtx4060ti2/Documentos/train"
+VALIDATE_DIR = "/home/rtx4060ti2/Documentos/validate"
+TEST_DIR = "/home/rtx4060ti2/Documentos/test"
 
 # pasta treino
 if not os.path.exists(TRAIN_DIR):

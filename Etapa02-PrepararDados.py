@@ -6,8 +6,8 @@ from keras.models import Sequential
 from keras.preprocessing import image
 import keras
 
-TRAIN_DIR = "C:/Base-de-Dados/BrainTumor/train"
-VAL_DIR = "C:/Base-de-Dados/BrainTumor/validade"
+TRAIN_DIR = "/home/rtx4060ti2/Documentos/train"
+VAL_DIR = "/home/rtx4060ti2/Documentos/validate"
 
 # constuir modelo CNN
 
@@ -60,12 +60,12 @@ from keras.callbacks import ModelCheckpoint, EarlyStopping
 
 #se a accuracy for boa --> Salvar!
 
-es = EarlyStopping(monitor='val_accuracy', min_delta=0.01, patience=5, verbose=1, mode='auto')
-mc = ModelCheckpoint(filepath='C:/Base-de-Dados/BrainTumor/MyBestModel.h5', monitor='Val_accuracy', verbose=1, mode='auto', save_best_only=True)
 
-call_back = [es, mc]
+mc = ModelCheckpoint(filepath='/home/rtx4060ti2/Documentos/MyBestModel.h5', monitor='val_accuracy', verbose=1, mode='auto', save_best_only=True)
 
-hist = model.fit(x=train_data, epochs=15, verbose=1, validation_data=val_data, callbacks=call_back)
+call_back = [mc]
+
+hist = model.fit(x=train_data, epochs=50, verbose=1, validation_data=val_data, callbacks=call_back)
 
 h = hist.history
 print('Keys :', h.keys() )
@@ -74,14 +74,13 @@ print('Keys :', h.keys() )
 #================================
 
 # accuracy
-plt.plot(h['accuracy'])
-plt.plot(h['val_accuracy'], c='red')
-plt.plot(h['Accuracy vs Val Accuracy'])
+plt.plot(h['accuracy'], label='Accuracy')
+plt.plot(h['val_accuracy'], label='Validation Accuracy')
+plt.legend()
 plt.show()
 
 # loss
-plt.plot(h['loss'])
-plt.plot(h['val_loss'], c='red')
-plt.plot(h['Loss vs Val Loss'])
+plt.plot(h['loss'], label='Training Loss')
+plt.plot(h['val_loss'], label='Validation Loss')
+plt.legend()
 plt.show()
-
